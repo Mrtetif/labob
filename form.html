@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Field</title>
+    <link rel="stylesheet" href="output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Manrope:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #0f0c29;
+      }
+
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: rgb(130, 17, 236);
+        opacity: 1;
+        filter: blur(120px);
+        animation: float 16s infinite ease-in-out;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-60px) scale(1.1);
+        }
+        100% {
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .bubble:nth-child(1) {
+        opacity: 0.6;
+        width: clamp(500px, 20vw, 250px);
+        height: clamp(500px, 20vw, 250px);
+        top: 1%;
+        left: 5%;
+        animation-delay: 0s;
+      }
+
+      .bubble:nth-child(2) {
+        width: clamp(80px, 10vw, 150px);
+        height: clamp(80px, 10vw, 150px);
+        top: 65%;
+        left: 25%;
+        animation-delay: 3s;
+      }
+
+      .bubble:nth-child(3) {
+        width: clamp(100px, 15vw, 200px);
+        height: clamp(100px, 15vw, 200px);
+        top: 40%;
+        left: 70%;
+        animation-delay: 5s;
+      }
+
+      .bubble:nth-child(4) {
+        width: clamp(60px, 8vw, 120px);
+        height: clamp(60px, 8vw, 120px);
+        top: 90%;
+        left: 50%;
+        animation-delay: 7s;
+      }
+
+      @media (min-width: 440px) and (max-width: 640px) {
+        .custom-img {
+          transform: scale(1.5);
+          transform-origin: 50% 30%;
+        }
+      }
+
+      @media (max-width: 439px), (min-width: 641px) {
+        .custom-img {
+          height: auto; /* Reset to default outside range */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="contacto" class="bg-[rgba(100,56,158,0.1)] backdrop-blur-md py-16 px-4 text-white">
+      <div class="max-w-[900px] mx-auto space-y-10 px-10">
+        <!-- Título -->
+        <div class="text-center space-y-3">
+          <h2 class="text-md font-semibold text-white/80">Agenda tu web</h2>
+          <p class="text-3xl font-bold">Cuéntanos tu idea y empieza el proceso</p>
+        </div>
+
+        <!-- Formulario -->
+        <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+          <!-- 1. Cuéntame tu idea o negocio -->
+          <div>
+            <label for="idea" class="block text-sm font-semibold mb-2"
+              >¿Cuál es tu idea o negocio?</label
+            >
+            <textarea
+              id="idea"
+              name="idea"
+              required
+              placeholder="Ej: Tienda de café local, marca personal, portfolio..."
+              class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              rows="4"
+            ></textarea>
+          </div>
+
+          <!-- 2. Tipo de web deseada -->
+          <div>
+            <label for="tipo" class="block text-sm font-semibold mb-2"
+              >¿Qué tipo de web necesitas?</label
+            >
+            <select
+              id="tipo"
+              name="tipo"
+              required
+              class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+            >
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="tienda">Tienda o autónomo</option>
+              <option value="startup">Startup / Emprendimiento</option>
+              <option value="profesional">Profesional independiente (coach, fotógrafo, etc)</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <!-- 3. Datos de contacto -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="nombre" class="block text-sm font-semibold mb-2">Nombre</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                placeholder="Tu nombre"
+                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="nombre@correo.com"
+                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+              />
+            </div>
+          </div>
+
+          <!-- Botón -->
+          <div class="text-center pt-4">
+            <button
+              type="submit"
+              class="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all duration-300 shadow-md"
+            >
+              Enviar y agendar llamada
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

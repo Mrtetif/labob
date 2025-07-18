@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll + Backdrop Layout</title>
+    <link rel="stylesheet" href="output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Manrope:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #0f0c29;
+      }
+
+      .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: rgb(130, 17, 236);
+        opacity: 1;
+        filter: blur(120px);
+        animation: float 16s infinite ease-in-out;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-60px) scale(1.1);
+        }
+        100% {
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .bubble:nth-child(1) {
+        opacity: 0.6;
+        width: clamp(500px, 20vw, 250px);
+        height: clamp(500px, 20vw, 250px);
+        top: 1%;
+        left: 5%;
+        animation-delay: 0s;
+      }
+
+      .bubble:nth-child(2) {
+        width: clamp(80px, 10vw, 150px);
+        height: clamp(80px, 10vw, 150px);
+        top: 65%;
+        left: 25%;
+        animation-delay: 3s;
+      }
+
+      .bubble:nth-child(3) {
+        width: clamp(100px, 15vw, 200px);
+        height: clamp(100px, 15vw, 200px);
+        top: 40%;
+        left: 70%;
+        animation-delay: 5s;
+      }
+
+      .bubble:nth-child(4) {
+        width: clamp(60px, 8vw, 120px);
+        height: clamp(60px, 8vw, 120px);
+        top: 90%;
+        left: 50%;
+        animation-delay: 7s;
+      }
+
+      @media (min-width: 440px) and (max-width: 640px) {
+        .custom-img {
+          transform: scale(1.5);
+          transform-origin: 50% 30%;
+        }
+      }
+
+      @media (max-width: 439px), (min-width: 641px) {
+        .custom-img {
+          height: auto; /* Reset to default outside range */
+        }
+      }
+    </style>
+  </head>
+  <body class="relative overflow-x-hidden">
+    <!-- Fondo con burbujas -->
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-tr from-violet-950 via-blue-950 to-indigo-950 overflow-hidden"
+    >
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+
+    <!-- Contenedor general scrollable -->
+    <section class="min-h-screen w-full flex items-center justify-center p-4">
+      <div
+        class="relative z-10 backdrop-blur-md bg-black/50 rounded-3xl p-8 w-full max-w-5xl shadow-xl overflow-y-auto"
+      >
+        <!-- Hero Section -->
+        <img
+          src="assets/images/ChatGPT Image 10 jul 2025, 23_09_26.png"
+          alt="headPhones"
+          class="w-[20rem] mx-auto"
+        />
+        <h1
+          class="mx-auto max-w-[560px] text-white text-3xl md:text-5xl font-bold text-center mb-4"
+        >
+          Tu web en 5-7 días sin complicaciones
+        </h1>
+        <p
+          class="text-white/80 text-center text-base sm:text-lg max-w-prose mx-auto font-[Manrope]"
+        >
+          Diseño profesional asistido por IA para emprendedores y negocios locales.
+        </p>
+
+        <!-- Servicios -->
+        <section class="px-0 py-20 text-white">
+          <div class="max-w-[900px] mx-auto flex flex-col lg:flex-row gap-6">
+            <!-- Panel izquierdo -->
+            <div class="relative w-full h-[27rem] md:h-[auto] lg:w-1/2 rounded-2xl overflow-hidden">
+              <!-- Imagen colocada al fondo inferior -->
+              <img
+                src="assets/images/ChatGPT Image 12 jul 2025, 00_25_34.png"
+                alt="Ilustración decorativa"
+                class="custom-img absolute bottom-[-7rem] sm:bottom-[-22rem] lg:bottom-[-12rem] md:left-[16rem] lg:left-0 w-full max-h-[100%] sm:max-h-[175%] md:max-h-[450%] lg:max-h-[150%] object-contain pointer-events-none select-none"
+              />
+
+              <!-- Contenido encima -->
+              <div
+                class="relative z-10 rounded-2xl p-6 h-full flex flex-col justify-start shadow-md"
+                style="background: rgba(100, 56, 158, 0.1)"
+              >
+                <h2 class="text-[1.375rem] sm:text-3xl font-extrabold mb-4 text-white">
+                  Servicios personalizados
+                </h2>
+                <p class="md:max-w-[425px] text-white/70 text-sm leading-relaxed">
+                  Creamos webs a medida para negocios reales. Rápido, humano y sin complicaciones.
+                  Adaptado a tu marca.
+                </p>
+              </div>
+            </div>
+
+            <!-- Panel derecho -->
+            <div class="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Card 1 -->
+              <div class="rounded-2xl p-6 shadow-xl flex flex-col gap-2 bg-[rgba(100,56,158,0.1)]">
+                <div
+                  class="bg-indigo-600 p-3 rounded-full w-16 h-16 flex items-center justify-center"
+                >
+                  <img
+                    src="assets/images/icons8-services-50-white.svg"
+                    alt="Icono Tiendas"
+                    class="w-8 h-8"
+                  />
+                </div>
+                <h3 class="text-lg font-semibold text-white">Tiendas y autónomos</h3>
+                <p class="text-white/70 text-sm">
+                  Presencia web para negocios locales que necesitan mostrarse online ya.
+                </p>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="rounded-2xl p-6 shadow-xl flex flex-col gap-2 bg-[rgba(100,56,158,0.1)]">
+                <div
+                  class="bg-indigo-600 p-3 rounded-full w-16 h-16 flex items-center justify-center"
+                >
+                  <img
+                    src="assets/images/icons8-local-delivery-64-white.svg"
+                    alt="Icono Startups"
+                    class="w-8 h-8"
+                  />
+                </div>
+                <h3 class="text-lg font-semibold text-white">Startups y emprendedores</h3>
+                <p class="text-white/70 text-sm">
+                  Despegamos tu proyecto con diseño ágil, claro y escalable.
+                </p>
+              </div>
+
+              <!-- Card 3 -->
+              <div
+                class="col-span-1 sm:col-span-2 rounded-2xl p-6 shadow-xl flex flex-col gap-2 bg-[rgba(100,56,158,0.1)]"
+              >
+                <div
+                  class="bg-indigo-600 p-3 rounded-full w-16 h-16 flex items-center justify-center"
+                >
+                  <img
+                    src="assets/images/icons8-shop-64-white.svg"
+                    alt="Icono Profesionales"
+                    class="w-8 h-8"
+                  />
+                </div>
+                <h3 class="text-lg font-semibold text-white">Servicios profesionales</h3>
+                <p class="text-white/70 text-sm">
+                  Para coaches, fotógrafos, electricistas y más. Web fácil de gestionar y lista para
+                  crecer.
+                </p>
+              </div>
+
+              <!-- Call to action -->
+              <div class="col-span-1 sm:col-span-2 text-center mt-2">
+                <button
+                  data-modal="open"
+                  class="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all duration-300 shadow-md"
+                >
+                  ¿Quieres saber más?
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ¿Cómo funciona? -->
+        <section class="max-w-[900px] mx-auto mt-10 text-white text-center space-y-12">
+          <div class="space-y-4">
+            <h2 class="text-md font-semibold text-white/80">¿Cómo funciona?</h2>
+            <p class="text-3xl font-bold">Tu web en 3 pasos</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            <div
+              class="relative rounded-2xl p-[2px] bg-gradient-to-br from-fuchsia-600 via-purple-600 to-indigo-600"
+            >
+              <!-- Card 1 -->
+              <div
+                class="bg-[rgba(26,19,59)] rounded-[14px] p-6 text-white w-full flex flex-col justify-between shadow-md h-full"
+              >
+                <h3 class="text-violet-400 font-semibold text-base sm:text-lg">
+                  1. Cuéntame tu idea
+                </h3>
+                <p class="text-sm text-white/80 mt-2">
+                  Rellenas un formulario corto con lo esencial.
+                </p>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div
+              class="lg:col-span-2 relative rounded-2xl p-[2px] bg-gradient-to-br from-fuchsia-600 via-purple-600 to-indigo-600"
+            >
+              <div
+                class="bg-[rgba(26,19,59)] rounded-[14px] p-6 text-white w-full flex flex-col justify-between shadow-md h-full"
+              >
+                <h3 class="text-violet-400 font-semibold text-base sm:text-lg">
+                  2. Generamos tu diseño
+                </h3>
+                <p class="text-sm text-white/80">
+                  Con IA + revisión humana, recibe una demo en 48h para que te hagas una idea del
+                  trabajo a realizar. Si te gusta lo que ves... avanzamos.
+                </p>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div
+              class="sm:col-span-2 lg:col-span-3 relative rounded-2xl p-[2px] bg-gradient-to-br from-fuchsia-600 via-purple-600 to-indigo-600"
+            >
+              <div
+                class="bg-[rgba(26,19,59)] rounded-[14px] p-6 text-white w-full flex flex-col justify-between shadow-md h-full"
+              >
+                <h3 class="text-violet-400 font-semibold text-base sm:text-lg">
+                  3. Web lista en 7 días
+                </h3>
+                <p class="text-sm text-white/80">
+                  Una vez aceptado el diseño. Te entregamos una web acabada al 100% y lista para
+                  subir a tu alojamiento web.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-20">
+          <div
+            class="max-w-[900px] mx-auto rounded-3xl overflow-hidden bg-fuchsia-950/20 backdrop-blur-xl shadow-lg border border-fuchsia-600/40 text-white px-6 sm:px-12 py-12 text-center"
+          >
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4">
+              ¿Listo para tener tu web funcionando?
+            </h2>
+            <p class="text-white/80 text-base sm:text-lg mb-8">
+              Genera tu web con un asesoramiento humano y publica en menos de 7 días. Rápido, visual
+              y sin complicaciones.
+            </p>
+            <button
+              data-modal="open"
+              class="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all duration-300 shadow-md"
+            >
+              Agenda tu llamada gratuita
+            </button>
+          </div>
+        </section>
+
+        <!-- Demo pages -->
+        <section class="mt-10 text-white">
+          <div class="max-w-[900px] mx-auto space-y-10">
+            <!-- Título + Descripción -->
+            <div class="text-center space-y-4">
+              <h2 class="text-md font-semibold text-white/80">Explora nuestras demos</h2>
+              <p class="text-3xl font-bold">Ejemplos reales de webs generadas</p>
+            </div>
+
+            <!-- Galería de Demos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              <!-- Card 1 -->
+              <a
+                href="https://mrtetif.github.io/bladehaus/"
+                target="_blank"
+                class="relative rounded-2xl overflow-hidden group h-56 sm:h-64 bg-center bg-cover"
+                style="background-image: url('assets/images/demo-1.jpg')"
+              >
+                <div
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                >
+                  <span class="text-sm font-semibold text-white tracking-wide uppercase"
+                    >Live Preview</span
+                  >
+                </div>
+              </a>
+
+              <!-- Card 2 -->
+              <a
+                href="https://voltgov1.netlify.app/"
+                target="_blank"
+                class="relative rounded-2xl overflow-hidden group h-56 sm:h-64 bg-center bg-cover"
+                style="background-image: url('assets/images/demo-2.jpg')"
+              >
+                <div
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                >
+                  <span class="text-sm font-semibold text-white tracking-wide uppercase"
+                    >Live Preview</span
+                  >
+                </div>
+              </a>
+
+              <!-- Card 3 -->
+              <a
+                href="https://mrtetif.github.io/dog-app/"
+                target="_blank"
+                class="relative rounded-2xl overflow-hidden group h-56 sm:h-64 bg-center bg-cover"
+                style="background-image: url('assets/images/demo-3.jpg')"
+              >
+                <div
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                >
+                  <span class="text-sm font-semibold text-white tracking-wide uppercase"
+                    >Live Preview</span
+                  >
+                </div>
+              </a>
+
+              <!-- Card 4 -->
+              <a
+                href="https://mrtetif.github.io/KairosDays/"
+                target="_blank"
+                class="relative rounded-2xl overflow-hidden group h-56 sm:h-64 bg-center bg-cover"
+                style="background-image: url('assets/images/demo-4.jpg')"
+              >
+                <div
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                >
+                  <span class="text-sm font-semibold text-white tracking-wide uppercase"
+                    >Live Preview</span
+                  >
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Divider antes del footer -->
+        <hr class="border-t border-white/20 my-12 max-w-[900px] mx-auto" />
+
+        <!-- Footer -->
+        <section
+          class="w-full px-8 py-8 relative bg-cover bg-center rounded-3xl overflow-hidden max-w-[900px] mx-auto"
+          style="background-image: url('assets/images/milad-fakurian-Oi_oaJk3qlo-unsplash.jpg')"
+        >
+          <!-- Overlay oscuro -->
+          <div class="absolute inset-0 bg-black/60"></div>
+
+          <div
+            class="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between gap-12"
+          >
+            <!-- Texto -->
+            <div class="text-left space-y-6">
+              <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">
+                Creamos webs con IA y toque humano<br />
+                para negocios reales.
+              </h2>
+              <p class="text-white/70 text-lg">
+                Diseño rápido, personalizado y sin complicaciones. Deja tu web en nuestras manos.
+              </p>
+
+              <!-- CTA -->
+              <button
+                data-modal="open"
+                class="inline-block bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-semibold text-sm sm:text-base px-6 py-3 rounded-xl transition-all duration-300 shadow-md"
+              >
+                Rellena el formulario
+              </button>
+            </div>
+          </div>
+        </section>
+        <footer class="bg-gradient-to-t from-[#0a0118] to-transparent mt-20">
+          <div
+            class="max-w-[900px] mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-8"
+          >
+            <!-- Texto -->
+            <div class="text-center lg:text-left space-y-3">
+              <p class="text-sm text-white/50 tracking-wide">
+                © <span class="text-white">Labob</span> 2025. Todos los derechos reservados.
+              </p>
+              <p class="text-sm text-white/50 tracking-wide">
+                Diseñado con <span class="text-fuchsia-500">IA</span> y un
+                <span class="text-indigo-400">toque humano</span>.
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </section>
+    <!-- Modal -->
+    <div
+      id="contactModal"
+      class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-[rgba(26,19,59,1)] text-white rounded-2xl max-w-md w-full p-6 shadow-xl relative"
+      >
+        <!-- Botón cerrar -->
+        <button
+          id="closeModal"
+          class="absolute top-4 right-4 text-white/60 hover:text-white text-2xl"
+        >
+          &times;
+        </button>
+
+        <!-- Título -->
+        <h2 class="text-2xl font-bold mb-4">Cuéntanos sobre tu proyecto</h2>
+
+        <!-- Formulario -->
+        <form class="space-y-4">
+          <!-- Campo 1 -->
+          <div>
+            <label for="idea" class="block text-sm font-medium text-white/70 mb-1"
+              >¿Cuál es tu idea o negocio?</label
+            >
+            <input
+              type="text"
+              id="idea"
+              name="idea"
+              class="w-full rounded-lg bg-white/10 p-3 text-sm placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
+              placeholder="Ej: Tienda de ropa, coaching, restaurante..."
+              required
+            />
+          </div>
+
+          <!-- Campo 2 -->
+          <div>
+            <label for="objetivo" class="block text-sm font-medium text-white/70 mb-1"
+              >¿Qué tipo de web necesitas?</label
+            >
+            <select
+              id="objetivo"
+              name="objetivo"
+              class="w-full rounded-lg bg-white/10 p-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
+            >
+              <option value="" class="bg-violet-950">Selecciona una opción</option>
+              <option value="landing" class="bg-violet-950">Landing page</option>
+              <option value="catalogo" class="bg-violet-950">Catálogo online</option>
+              <option value="blog" class="bg-violet-950">Blog personal</option>
+              <option value="otra" class="bg-violet-950">Otra (especificar en detalles)</option>
+            </select>
+          </div>
+
+          <!-- Campo 3 -->
+          <div>
+            <label for="urgencia" class="block text-sm font-medium text-white/70 mb-1"
+              >¿Para cuándo lo necesitas?</label
+            >
+            <input
+              type="text"
+              id="urgencia"
+              name="urgencia"
+              class="w-full rounded-lg bg-white/10 p-3 text-sm placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-fuchsia-600"
+              placeholder="Ej: Esta semana, en 10 días, este mes..."
+            />
+          </div>
+
+          <!-- Botón enviar -->
+          <button
+            type="submit"
+            class="w-full bg-fuchsia-600 hover:bg-fuchsia-500 transition-all duration-300 text-white font-semibold py-3 rounded-lg shadow-lg"
+          >
+            Enviar información
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Botón flotante oculto al principio -->
+    <button
+      id="scrollUpFloating"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      class="hidden fixed bottom-8 right-8 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-bold px-4 py-3 rounded-full shadow-lg transition-opacity duration-300 z-50"
+    >
+      ↑
+    </button>
+
+    <script>
+      const scrollUpBtn = document.getElementById('scrollUpFloating');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          scrollUpBtn.classList.remove('hidden');
+        } else {
+          scrollUpBtn.classList.add('hidden');
+        }
+      });
+    </script>
+    <script>
+      // Abrir modal
+      document.querySelectorAll('[data-modal="open"]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.getElementById('contactModal').classList.remove('hidden');
+        });
+      });
+
+      // Cerrar modal
+      document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('contactModal').classList.add('hidden');
+      });
+    </script>
+  </body>
+</html>
